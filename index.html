@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Manikanta's Coastal Pickles</title>
+  <meta name="description" content="Handcrafted fish & prawn pickles — authentic Andhra spices.">
+  <style>
+    /* -----------------------
+       Single-file site styles
+       ----------------------- */
+    :root{
+      --bg-1: #052f46; --bg-2: #044e65; --accent: #f9a826; --muted: #eaf8ff;
+      --card: rgba(255,255,255,0.06);
+      --glass: rgba(255,255,255,0.06);
+      --max-width: 1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, 'Poppins', Arial;
+      background: linear-gradient(180deg,var(--bg-1), var(--bg-2) 40%, #f6fbfd 100%);
+      color:#042b38;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    .container{max-width:var(--max-width);margin:0 auto;padding:0 20px}
+
+    /* Topbar */
+    .topbar{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,#062e40,#03262f);box-shadow:0 6px 18px rgba(0,0,0,0.25)}
+    .topbar-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{color:#9fefff;font-family:'Oswald',sans-serif;font-size:1.15rem}
+    .nav a{color:#fff;margin-left:18px;text-decoration:none;font-weight:600}
+    .btn{display:inline-block;padding:10px 16px;border-radius:10px;text-decoration:none}
+    .btn.ghost{background:transparent;border:2px solid rgba(255,255,255,0.12);color:#fff}
+    .btn.primary{background:linear-gradient(180deg,var(--accent),#ffb347);color:#042b38;font-weight:700;border:none;box-shadow:0 10px 30px rgba(249,168,38,0.18)}
+
+    /* HERO */
+    .hero{padding:48px 0 16px;color:#fff;position:relative;overflow:hidden}
+    .hero-grid{display:grid;grid-template-columns:1fr;gap:20px;align-items:center;min-height:360px}
+    .eyebrow{color:rgba(173,232,255,0.9);font-weight:600}
+    .title{font-family:'Oswald',sans-serif;font-size:48px;line-height:0.96;color:var(--accent);margin:6px 0}
+    .subtitle{color:rgba(230,250,255,0.95);max-width:560px}
+    .hero-cta{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+    .hero-media{position:relative;display:flex;justify-content:center;align-items:center}
+    .cover{width:100%;max-width:420px;border-radius:16px;box-shadow:0 26px 70px rgba(0,0,0,0.45);transition:transform 0.45s ease, filter 0.45s ease;position:relative;z-index:2;overflow:hidden}
+    .cover img{display:block;width:100%;height:auto}
+    .cover:hover{transform:scale(1.03);filter:brightness(1.04)}
+    .hero-glow{position:absolute;right:40px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle at 30% 40%, rgba(249,168,38,0.22), rgba(249,168,38,0.03) 30%, transparent 65%);filter:blur(18px);z-index:1;animation:float 6s ease-in-out infinite;pointer-events:none}
+    @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+
+    /* waves */
+    .wave{width:100%;line-height:0}
+    .wave svg{display:block;width:100%;height:90px}
+
+    /* ABOUT */
+    .about{background:#fff;padding:64px 0}
+    .section-title{font-family:'Oswald',sans-serif;color:var(--accent);font-size:28px;margin-bottom:12px;text-align:center}
+    .lead{color:#063850;max-width:860px;margin:0 auto 30px;text-align:center}
+
+    /* refined feature cards */
+    .card-row{display:flex;gap:20px;justify-content:center;align-items:stretch;flex-wrap:wrap;margin-top:18px}
+    .feature-card{background:#f7fbfd;border-radius:18px;padding:28px;width:320px;text-align:center;box-shadow:0 14px 40px rgba(2,12,24,0.08);transition:transform .28s ease, box-shadow .28s ease;display:flex;flex-direction:column;align-items:center}
+    .feature-card:hover{transform:translateY(-8px);box-shadow:0 26px 60px rgba(2,12,24,0.12)}
+    .icon-wrap{width:86px;height:86px;border-radius:50%;background:linear-gradient(145deg,#e9fbff,#ffffff);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;box-shadow:inset 6px 6px 14px rgba(0,0,0,0.03), 0 8px 20px rgba(2,12,24,0.06)}
+    .icon-wrap svg{width:42px;height:42px}
+    .feature-card h3{color:#064a63;margin:6px 0 8px}
+    .feature-card p{color:#355c6c;flex:1}
+
+    /* PRODUCTS */
+    .products{background:linear-gradient(180deg,#013e66,#046f91);color:#fff;padding:44px 0;position:relative}
+    .products .section-title{color:var(--accent);text-align:center;font-size:32px}
+    .products .lead{color:#dbeff7;text-align:center}
+    .products-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:20px;padding:0 10px}
+    .product{background:var(--card);border-radius:14px;overflow:hidden;display:grid;grid-template-columns:1fr;padding:0;box-shadow:0 12px 40px rgba(0,0,0,0.22);transition:transform .3s ease}
+    .product:hover{transform:translateY(-8px)}
+    .product-media{width:100%;height:220px;overflow:hidden;flex:0 0 auto;display:flex;align-items:center;justify-content:center;background:#0b3550}
+    .product-media svg{width:100%;height:100%;display:block}
+    .product-body{padding:18px}
+    .product-body h3{color:#9feaff;margin:0 0 8px}
+    .product-body p{color:#e0f7ff}
+
+    /* CONTACT */
+    .contact{padding:56px 0;background:#fff}
+    .contact-panel{background:#f3f8fb;border-radius:14px;padding:20px}
+    .contacts{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+    .contact-card{background:transparent;padding:10px;text-align:center;min-width:180px}
+    .contact-card a{color:#007ea7}
+
+    /* Footer */
+    .site-footer{padding:18px 0;background:linear-gradient(180deg,#052a3a,#072c3a);color:#fff;text-align:center}
+
+    /* WhatsApp floating */
+    .whatsapp-fab{position:fixed;right:18px;bottom:18px;width:60px;height:60px;border-radius:999px;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 18px 50px rgba(37,211,102,0.18);z-index:120;transition:transform .18s ease}
+    .whatsapp-fab:hover{transform:scale(1.06);box-shadow:0 28px 70px rgba(37,211,102,0.26)}
+
+    /* reveal animations */
+    .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s cubic-bezier(.2,.8,.2,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    /* small helpers */
+    .center{text-align:center}
+    a{color:inherit}
+    a[href^="tel"], a[href^="mailto"]{color:#007ea7;}
+
+    /* responsive */
+    @media(min-width:720px){
+      .hero-grid{grid-template-columns:1fr 480px;align-items:center}
+      .title{font-size:72px}
+      .card-row{gap:28px}
+      .products-grid{grid-template-columns:repeat(2,1fr);max-width:1000px;margin:0 auto;padding:0}
+      .product{grid-template-columns:360px 1fr;height:240px}
+      .product-media{height:100%}
+    }
+    @media(min-width:1100px){ .products-grid{grid-template-columns:repeat(3,1fr)} }
+
+    /* accessibility */
+    a:focus{outline:3px solid rgba(249,168,38,0.24);outline-offset:3px}
+  </style>
+</head>
+<body>
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">Manikanta's Coastal Pickles</div>
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#products">Our Products</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact" class="btn primary">Order Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Hero">
+    <div class="container hero-grid">
+      <div class="hero-copy reveal">
+        <div class="eyebrow">Taste the ocean's best…!</div>
+        <h1 class="title">Sea Food<br/>Pickles</h1>
+        <p class="subtitle">Freshly made fish and prawn pickles — handcrafted with authentic Andhra spices and traditional recipes passed down through generations.</p>
+        <div class="hero-cta">
+          <a href="#products" class="btn ghost">View Products</a>
+          <a href="#contact" class="btn primary">Order Now</a>
+        </div>
+      </div>
+
+      <div class="hero-media reveal" id="heroMedia">
+        <div class="hero-glow" aria-hidden></div>
+
+        <!-- placeholder hero image as inline SVG (you'll replace later) -->
+        <div class="cover" id="heroCover" role="img" aria-label="Jar of pickles">
+          <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#ff8a65"/><stop offset="1" stop-color="#ff7043"/></linearGradient>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#g1)"></rect>
+            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="48" fill="#fff" font-family="Poppins, Arial">Hero Image</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="wave" aria-hidden>
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path d="M0,40 C240,120 360,0 720,40 C1080,80 1200,20 1440,60 L1440 120 L0 120 Z" fill="#ffffff"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about" aria-label="About us">
+    <div class="container">
+      <h2 class="section-title">About Us</h2>
+      <p class="lead">At <strong>Manikanta Sea Food Pickles</strong>, we are dedicated to bringing the rich taste of coastal cuisine to your home. Every jar is a reflection of our love for the sea — made using handpicked fish and prawns, authentic Andhra spices, and traditional recipes perfected over generations.</p>
+
+      <div class="card-row">
+        <article class="feature-card reveal" aria-hidden="false">
+          <div class="icon-wrap">
+            <!-- icon wave -->
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden><path d="M2 12c4-4 8 4 12 0 4-4 8 4 12 0" stroke="#0477a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Coastal Tradition</h3>
+          <p>Authentic recipes passed down through generations for that true ocean flavor.</p>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="icon-wrap">
+            <!-- icon medal -->
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden>
+              <circle cx="12" cy="8" r="3" fill="#f9a826"/>
+              <path d="M8 14l-2 6h10l-2-6" fill="#ffd27a"/>
+            </svg>
+          </div>
+          <h3>Premium Quality</h3>
+          <p>Handpicked seafood and carefully blended Andhra spices for perfect taste.</p>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="icon-wrap">
+            <!-- icon heart -->
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden><path d="M12 21s-7-4.35-9-7.17C-1 9 5 3 12 8c7-5 13 1 9 5.83C19 16.65 12 21 12 21z" fill="#ff6b6b"/></svg>
+          </div>
+          <h3>Made with Love</h3>
+          <p>Each jar is crafted with care, passion, and coastal authenticity you can taste.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products" class="products" aria-label="Products">
+    <div class="container">
+      <h2 class="section-title center">Our Special Pickles</h2>
+      <p class="lead center light">Handcrafted with love — a burst of coastal flavor in every jar</p>
+
+      <div class="products-grid">
+        <!-- Product 1 -->
+        <article class="product reveal">
+          <div class="product-media" aria-hidden>
+            <!-- inline svg placeholder -->
+            <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <rect width="100%" height="100%" fill="#e76f51"></rect>
+              <text x="50%" y="50%" fill="#fff" font-size="36" font-family="Poppins, Arial" text-anchor="middle" dominant-baseline="middle">Fish Pickle</text>
+            </svg>
+          </div>
+          <div class="product-body">
+            <h3>Fish Pickle</h3>
+            <p>Rich, tangy, and perfectly spiced — made from premium fish cuts for a truly coastal taste. Slow-cooked to perfection with authentic Andhra masala.</p>
+          </div>
+        </article>
+
+        <!-- Product 2 -->
+        <article class="product reveal">
+          <div class="product-media" aria-hidden>
+            <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <rect width="100%" height="100%" fill="#2a9d8f"></rect>
+              <text x="50%" y="50%" fill="#fff" font-size="36" font-family="Poppins, Arial" text-anchor="middle" dominant-baseline="middle">Prawn Pickle</text>
+            </svg>
+          </div>
+          <div class="product-body">
+            <h3>Prawn Pickle</h3>
+            <p>Juicy prawns marinated in aromatic masala and slow-cooked to perfection for that irresistible flavor — a delicacy that brings the ocean to your table.</p>
+          </div>
+        </article>
+
+        <!-- Product 3 -->
+        <article class="product reveal">
+          <div class="product-media" aria-hidden>
+            <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <rect width="100%" height="100%" fill="#264653"></rect>
+              <text x="50%" y="50%" fill="#fff" font-size="36" font-family="Poppins, Arial" text-anchor="middle" dominant-baseline="middle">Mixed Pickle</text>
+            </svg>
+          </div>
+          <div class="product-body">
+            <h3>Mixed Seafood Pickle</h3>
+            <p>A delicious medley of prawns, fish, and squid — a true Andhra coastal delight that blends textures and spice beautifully.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="wave bottom" aria-hidden>
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path d="M0,60 C240,0 360,120 720,60 C1080,0 1200,100 1440,60 L1440 120 L0 120 Z" fill="#ffffff"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact" aria-label="Contact">
+    <div class="container contact-panel">
+      <h2 class="section-title center">Contact Us</h2>
+      <p class="lead center">Ready to order? Get in touch with us today!</p>
+
+      <div class="contacts">
+        <div class="contact-card reveal">
+          <div class="small-icon">📍</div>
+          <h4>Location</h4>
+          <p>Mancherial, Telangana</p>
+        </div>
+
+        <div class="contact-card reveal">
+          <div class="small-icon">📞</div>
+          <h4>Phone</h4>
+          <p><a href="tel:+917799603885">+91 7799603885</a></p>
+        </div>
+
+        <div class="contact-card reveal">
+          <div class="small-icon">✉️</div>
+          <h4>Email</h4>
+          <p><a href="mailto:dilipraju18@gmail.com">dilipraju18@gmail.com</a></p>
+        </div>
+      </div>
+
+      <div class="center" style="margin-top:22px;">
+        <a class="btn primary" href="tel:+917799603885">Call to Order Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container center">© <span id="year"></span> Manikanta's Coastal Pickles</div>
+  </footer>
+
+  <!-- WhatsApp floating button (opens chat directly) -->
+  <a class="whatsapp-fab" id="waBtn" href="https://wa.me/917799603885?text=Hi%20Manikanta%2C%20I%20want%20to%20order%20Seafood%20Pickles!" target="_blank" aria-label="Chat on WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden>
+      <path fill="#fff" d="M20.52 3.48A11 11 0 1 0 23 14.9L21 14a8.5 8.5 0 0 1-..."></path>
+    </svg>
+  </a>
+
+  <script>
+    // Single-file JS: parallax, reveal on scroll, hero parallax, set year
+    (function(){
+      // set year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Reveal on scroll (IntersectionObserver)
+      const revealEls = Array.from(document.querySelectorAll('.reveal'));
+      if('IntersectionObserver' in window){
+        const io = new IntersectionObserver((entries, obs) => {
+          entries.forEach(e => {
+            if(e.isIntersecting){
+              e.target.classList.add('visible');
+              obs.unobserve(e.target);
+            }
+          });
+        }, {threshold: 0.12});
+        revealEls.forEach(el => io.observe(el));
+      } else {
+        // fallback
+        revealEls.forEach(el => el.classList.add('visible'));
+      }
+
+      // Hero parallax (mouse move) - desktop only
+      const heroImg = document.getElementById('heroCover');
+      if(heroImg && window.matchMedia('(hover: hover) and (pointer: fine)').matches){
+        const onMove = (e) => {
+          const rect = heroImg.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          heroImg.style.transform = `translate3d(${x * 8}px, ${y * 8}px, 0) scale(1.02)`;
+        };
+        const reset = () => heroImg.style.transform = '';
+        window.addEventListener('mousemove', onMove);
+        window.addEventListener('mouseleave', reset);
+        // cleanup on unload
+        window.addEventListener('beforeunload', () => { window.removeEventListener('mousemove', onMove); window.removeEventListener('mouseleave', reset); });
+      }
+
+      // Light parallax for hero glow (subtle)
+      const glow = document.querySelector('.hero-glow');
+      if(glow){
+        let t=0;
+        const anim = () => {
+          t += 0.016;
+          glow.style.transform = `translateY(${Math.sin(t*0.6)*6}px)`;
+          requestAnimationFrame(anim);
+        };
+        requestAnimationFrame(anim);
+      }
+
+      // Smooth scroll for internal links
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', (ev)=>{
+          const href = a.getAttribute('href');
+          if(!href || href === '#') return;
+          const el = document.querySelector(href);
+          if(el){
+            ev.preventDefault();
+            el.scrollIntoView({behavior:'smooth', block:'start'});
+            history.replaceState(null, '', href);
+          }
+        });
+      });
+
+      // Small accessibility: enable keyboard focus on whatsapp button
+      const wa = document.getElementById('waBtn');
+      wa.setAttribute('role','button');
+      wa.setAttribute('aria-label','Open WhatsApp chat');
+
+    })();
+  </script>
+</body>
+</html>
