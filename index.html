@@ -30,7 +30,7 @@
     /* Topbar */
     .topbar{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,#062e40,#03262f);box-shadow:0 6px 18px rgba(0,0,0,0.25)}
     .topbar-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-    .brand{color:#9fefff;font-family:'Oswald',sans-serif;font-size:1.15rem}
+    .brand{color:#9fefff;font-family: Georgia, serif;font-size:3rem}
     .nav a{color:#fff;margin-left:18px;text-decoration:none;font-weight:600}
     .btn{display:inline-block;padding:10px 16px;border-radius:10px;text-decoration:none}
     .btn.ghost{background:transparent;border:2px solid rgba(255,255,255,0.12);color:#fff}
@@ -54,6 +54,9 @@
     .wave{width:100%;line-height:0}
     .wave svg{display:block;width:100%;height:90px}
 
+
+
+
     /* ABOUT */
     .about{background:#fff;padding:64px 0}
     .section-title{font-family:'Oswald',sans-serif;color:var(--accent);font-size:28px;margin-bottom:12px;text-align:center}
@@ -68,18 +71,73 @@
     .feature-card h3{color:#064a63;margin:6px 0 8px}
     .feature-card p{color:#355c6c;flex:1}
 
-    /* PRODUCTS */
-    .products{background:linear-gradient(180deg,#013e66,#046f91);color:#fff;padding:44px 0;position:relative}
-    .products .section-title{color:var(--accent);text-align:center;font-size:32px}
-    .products .lead{color:#dbeff7;text-align:center}
-    .products-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:20px;padding:0 10px}
-    .product{background:var(--card);border-radius:14px;overflow:hidden;display:grid;grid-template-columns:1fr;padding:0;box-shadow:0 12px 40px rgba(0,0,0,0.22);transition:transform .3s ease}
-    .product:hover{transform:translateY(-8px)}
-    .product-media{width:100%;height:220px;overflow:hidden;flex:0 0 auto;display:flex;align-items:center;justify-content:center;background:#0b3550}
-    .product-media svg{width:100%;height:100%;display:block}
-    .product-body{padding:18px}
-    .product-body h3{color:#9feaff;margin:0 0 8px}
-    .product-body p{color:#e0f7ff}
+/* PRODUCTS */
+.products {
+  background: #032841;
+  padding: 80px 20px;
+  color: #fff;
+  text-align: center;
+}
+.products .section-title {
+  color: #f9a826;
+  font-family: 'Oswald', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.products .lead {
+  color: #dbeff7;
+  font-size: 1.1rem;
+  margin-bottom: 50px;
+}
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  justify-items: center;
+}
+.product-card {
+  background: #0b3550;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  width: 320px;
+  transition: all 0.3s ease;
+}
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+}
+.product-img {
+  width: 100%;
+  height: 230px;
+  overflow: hidden;
+  background: #000;
+}
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  border-radius: 10px 10px 0 0;
+}
+.product-card:hover img {
+  transform: scale(1.08);
+}
+.product-info {
+  padding: 18px 16px 24px;
+}
+.product-info h3 {
+  color: #7de0ff;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+.product-info p {
+  color: #bfeaf6;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
 
     /* CONTACT */
     .contact{padding:56px 0;background:#fff}
@@ -151,15 +209,15 @@
         <div class="hero-glow" aria-hidden></div>
 
         <!-- placeholder hero image as inline SVG (you'll replace later) -->
-        <div class="cover" id="heroCover" role="img" aria-label="Jar of pickles">
-          <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-            <defs>
-              <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#ff8a65"/><stop offset="1" stop-color="#ff7043"/></linearGradient>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#g1)"></rect>
-            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="48" fill="#fff" font-family="Poppins, Arial">Hero Image</text>
-          </svg>
-        </div>
+          <div class="hero-media reveal" id="heroMedia">
+              <div class="hero-glow" aria-hidden></div>
+
+              <!-- Hero image -->
+              <div class="cover" id="heroCover" role="img" aria-label="Seafood pickle jar">
+                  <img src="prawns.jpg" alt="Seafood pickle jar" style="width:100%; height:auto; border-radius:16px;">
+              </div>
+          </div>
+
       </div>
     </div>
 
@@ -212,62 +270,56 @@
 
   <!-- PRODUCTS -->
   <section id="products" class="products" aria-label="Products">
-    <div class="container">
-      <h2 class="section-title center">Our Special Pickles</h2>
-      <p class="lead center light">Handcrafted with love — a burst of coastal flavor in every jar</p>
+      <div class="container">
+          <h2 class="section-title center">Our Special Pickles</h2>
+          <p class="lead center light">Handcrafted with love — a burst of coastal flavor in every jar</p>
 
-      <div class="products-grid">
-        <!-- Product 1 -->
-        <article class="product reveal">
-          <div class="product-media" aria-hidden>
-            <!-- inline svg placeholder -->
-            <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-              <rect width="100%" height="100%" fill="#e76f51"></rect>
-              <text x="50%" y="50%" fill="#fff" font-size="36" font-family="Poppins, Arial" text-anchor="middle" dominant-baseline="middle">Fish Pickle</text>
-            </svg>
-          </div>
-          <div class="product-body">
-            <h3>Fish Pickle</h3>
-            <p>Rich, tangy, and perfectly spiced — made from premium fish cuts for a truly coastal taste. Slow-cooked to perfection with authentic Andhra masala.</p>
-          </div>
-        </article>
+          <div class="product-grid">
 
-        <!-- Product 2 -->
-        <article class="product reveal">
-          <div class="product-media" aria-hidden>
-            <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-              <rect width="100%" height="100%" fill="#2a9d8f"></rect>
-              <text x="50%" y="50%" fill="#fff" font-size="36" font-family="Poppins, Arial" text-anchor="middle" dominant-baseline="middle">Prawn Pickle</text>
-            </svg>
-          </div>
-          <div class="product-body">
-            <h3>Prawn Pickle</h3>
-            <p>Juicy prawns marinated in aromatic masala and slow-cooked to perfection for that irresistible flavor — a delicacy that brings the ocean to your table.</p>
-          </div>
-        </article>
+              <!-- Product 1 -->
+              <div class="product-card reveal">
+                  <div class="product-img">
+                      <img src="fish1.jpg" alt="Fish Pickle">
+                  </div>
+                  <div class="product-info">
+                      <h3>Fish Pickle</h3>
+                      <p>Rich, tangy, and perfectly spiced — made from premium fish cuts for a truly coastal taste. Slow-cooked to perfection with authentic Andhra masala.</p>
+                  </div>
+              </div>
 
-        <!-- Product 3 -->
-        <article class="product reveal">
-          <div class="product-media" aria-hidden>
-            <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-              <rect width="100%" height="100%" fill="#264653"></rect>
-              <text x="50%" y="50%" fill="#fff" font-size="36" font-family="Poppins, Arial" text-anchor="middle" dominant-baseline="middle">Mixed Pickle</text>
-            </svg>
+              <!-- Product 2 -->
+              <div class="product-card reveal">
+                  <div class="product-img">
+                      <img src="prawns.jpg" alt="Prawn Pickle">
+                  </div>
+                  <div class="product-info">
+                      <h3>Prawn Pickle</h3>
+                      <p>Juicy prawns marinated in aromatic masala and slow-cooked to perfection for that irresistible flavor.</p>
+                  </div>
+              </div>
+
+              <!-- Product 3 -->
+              <div class="product-card reveal">
+                  <div class="product-img">
+                      <img src="crab.jpg" alt="crabs">
+                  </div>
+                  <div class="product-info">
+                      <h3>Mixed Seafood Pickle</h3>
+                      <p>A delicious medley of prawns, fish, and squid — a true Andhra coastal delight that blends textures and spice beautifully.</p>
+                  </div>
+              </div>
+
           </div>
-          <div class="product-body">
-            <h3>Mixed Seafood Pickle</h3>
-            <p>A delicious medley of prawns, fish, and squid — a true Andhra coastal delight that blends textures and spice beautifully.</p>
-          </div>
-        </article>
       </div>
-    </div>
 
-    <div class="wave bottom" aria-hidden>
-      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
-        <path d="M0,60 C240,0 360,120 720,60 C1080,0 1200,100 1440,60 L1440 120 L0 120 Z" fill="#ffffff"/>
-      </svg>
-    </div>
+      <div class="wave" aria-hidden>
+          <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+              <path d="M0,40 C240,120 360,0 720,40 C1080,80 1200,20 1440,60 L1440 120 L0 120 Z" fill="#ffffff"/>
+          </svg>
+      </div>
   </section>
+
+
 
   <!-- CONTACT -->
   <section id="contact" class="contact" aria-label="Contact">
@@ -363,6 +415,7 @@
         };
         requestAnimationFrame(anim);
       }
+
 
       // Smooth scroll for internal links
       document.querySelectorAll('a[href^="#"]').forEach(a=>{
