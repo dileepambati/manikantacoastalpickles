@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Manikanta's Coastal Pickles</title>
+  <title>Mani's Coastal Pickles</title>
   <meta name="description" content="Handcrafted fish & prawn pickles — authentic Andhra spices.">
   <style>
     /* -----------------------
@@ -175,22 +175,85 @@
 
     /* accessibility */
     a:focus{outline:3px solid rgba(249,168,38,0.24);outline-offset:3px}
+
+      /* HAMBURGER MENU */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 32px;
+  cursor: pointer;
+  padding: 4px 10px;
+}
+
+/* MOBILE MENU PANEL */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 14px;
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  background: #03262f;
+  padding: 20px;
+  width: 200px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+  z-index: 999;
+}
+
+.mobile-menu a {
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.mobile-menu.show {
+  display: flex;
+}
+
+/* Show hamburger, hide nav on mobile */
+@media(max-width: 768px){
+  .nav {
+    display: none;
+  }
+  .hamburger {
+    display: block;
+  }
+}
+
   </style>
 </head>
 <body>
 
   <!-- Topbar -->
   <header class="topbar">
-    <div class="container topbar-inner">
-      <div class="brand">Manikanta's Coastal Pickles</div>
-      <nav class="nav">
-        <a href="#about">About</a>
-        <a href="#products">Our Products</a>
-        <a href="#contact">Contact</a>
-        <a href="#contact" class="btn primary">Order Now</a>
-      </nav>
-    </div>
+      <div class="container topbar-inner">
+
+          <div class="brand">Mani's Coastal Pickles</div>
+
+          <nav class="nav">
+              <a href="#about">About</a>
+              <a href="#products">Our Products</a>
+              <a href="#contact">Contact</a>
+              <a href="#contact" class="btn primary">Order Now</a>
+          </nav>
+
+          <!-- ADD THIS -->
+          <button class="hamburger" id="hamburgerBtn">☰</button>
+
+          <!-- ADD THIS -->
+          <div class="mobile-menu" id="mobileMenu">
+              <a href="#about">About</a>
+              <a href="#products">Our Products</a>
+              <a href="#contact">Contact</a>
+              <a href="#contact" class="btn primary">Order Now</a>
+          </div>
+
+      </div>
   </header>
+
 
   <!-- HERO -->
   <section class="hero" aria-label="Hero">
@@ -304,11 +367,20 @@
                       <img src="crab.jpg" alt="crabs">
                   </div>
                   <div class="product-info">
-                      <h3>Crab Pickle</h3>
-                      <p>A delicious medley of prawns, fish, and squid — a true Andhra coastal delight that blends textures and spice beautifully.</p>
+                      <h3>Dried Fish</h3>
+                      <p>A delicious medley of fish, a true Andhra coastal delight that blends textures and spice beautifully.</p>
                   </div>
               </div>
 
+              <div class="product-card reveal">
+                  <div class="product-img">
+                      <img src="prawns.jpg" alt="Prawn Pickle">
+                  </div>
+                  <div class="product-info">
+                      <h3>Dried Prawns</h3>
+                      <p>Authentic sun-dried prawns packed with bold coastal flavors and traditional Andhra-style seasoning.</p>
+                  </div>
+              </div>
           </div>
       </div>
 
@@ -437,6 +509,20 @@
       const wa = document.getElementById('waBtn');
       wa.setAttribute('role','button');
       wa.setAttribute('aria-label','Open WhatsApp chat');
+// HAMBURGER MENU OPEN/CLOSE
+const hamBtn = document.getElementById('hamburgerBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+
+hamBtn.addEventListener('click', () => {
+  mobileMenu.classList.toggle('show');
+});
+
+// Close mobile menu when a link is clicked
+document.querySelectorAll('.mobile-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('show');
+  });
+});
 
     })();
   </script>
