@@ -587,30 +587,6 @@
 const hamBtn = document.getElementById('hamburgerBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 
-
-// HAMBURGER MENU OPEN/CLOSE
-const hamBtn = document.getElementById('hamburgerBtn');
-const mobileMenu = document.getElementById('mobileMenu');
-const menuOverlay = document.getElementById('menuOverlay');
-
-hamBtn.addEventListener('click', () => {
-  mobileMenu.classList.toggle('show');
-  menuOverlay.classList.toggle('show');  // show overlay
-});
-
-// Close when clicking outside
-menuOverlay.addEventListener('click', () => {
-  mobileMenu.classList.remove('show');
-  menuOverlay.classList.remove('show');
-});
-
-// Close mobile menu when a link is clicked
-document.querySelectorAll('.mobile-menu a').forEach(link => {
-  link.addEventListener('click', () => {
-    mobileMenu.classList.remove('show');
-    menuOverlay.classList.remove('show');
-  });
-});
 hamBtn.addEventListener('click', () => {
   mobileMenu.classList.toggle('show');
 });
