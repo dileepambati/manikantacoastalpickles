@@ -290,6 +290,17 @@
   .hamburger { display: block; }
 }
 
+      .menu-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(2px);
+  z-index: 998;
+  display: none;
+}
+.menu-overlay.show { display: block; }
+
   </style>
 </head>
 <body>
@@ -309,6 +320,8 @@
 
           <!-- ADD THIS -->
           <button class="hamburger" id="hamburgerBtn">☰</button>
+          <div class="menu-overlay" id="menuOverlay"></div>
+
 
           <!-- ADD THIS -->
           <div class="mobile-menu" id="mobileMenu">
@@ -586,17 +599,28 @@
 // HAMBURGER MENU OPEN/CLOSE
 const hamBtn = document.getElementById('hamburgerBtn');
 const mobileMenu = document.getElementById('mobileMenu');
+const menuOverlay = document.getElementById('menuOverlay');
 
+// Open / Close menu
 hamBtn.addEventListener('click', () => {
   mobileMenu.classList.toggle('show');
+  menuOverlay.classList.toggle('show');
 });
 
-// Close mobile menu when a link is clicked
+// Close on outside click (overlay)
+menuOverlay.addEventListener('click', () => {
+  mobileMenu.classList.remove('show');
+  menuOverlay.classList.remove('show');
+});
+
+// Close when clicking any link inside menu
 document.querySelectorAll('.mobile-menu a').forEach(link => {
   link.addEventListener('click', () => {
     mobileMenu.classList.remove('show');
+    menuOverlay.classList.remove('show');
   });
 });
+
 
     })();
   </script>
